@@ -150,9 +150,21 @@ void HashMap<K, M, H>::rehash(size_t new_bucket_count) {
 
         // Hint: you should NOT call insert, and you should not call
         // new or delete in this function. You must reuse existing nodes.
-        (void) new_buckets_array; // remove this line after you start implementing
-
+        //(void) new_buckets_array; // remove this line after you start implementing
+    for (size_t i = 0; i < bucket_count(); ++i) { 
+     auto curr = _buckets_array[i];
+     while (curr != nullptr) {
+        const auto& [key, mapped] = curr->value;
+        std::cout <<  " -> " << key << ":" << mapped;
+        size_t index = _hash_function(key) % new_bucket_count;//在新的bucket的索引
+        new_buckets_array[index] = new  node(curr->value,new_buckets_array[index]);
+        curr = curr->next;
+    }
+}
+    _buckets_array.clear();
+    _buckets_array = new_buckets_array;
     /* end student code */
+
 }
 
 /*
