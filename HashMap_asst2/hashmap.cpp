@@ -81,10 +81,10 @@ std::pair<typename HashMap<K, M, H>::value_type*, bool>
 }
 
 template <typename K, typename M, typename H>
-M& HashMap<K, M, H>::at(const K& key) {
+M& HashMap<K, M, H>::at(const K& key)   {
    auto [prev, node_found] = find_node(key);
    if (node_found == nullptr) {
-       value_type val = {key ,{}};
+       //value_type val = {key ,{}};
        //return val.second;
        throw std::out_of_range("HashMap<K, M, H>::at: key not found");
    }
@@ -211,8 +211,8 @@ template <typename K_, typename M_, typename H_>
  template <typename K_, typename M_, typename H_>
      bool operator!=(const HashMap<K_, M_, H_>& lhs,
              const HashMap<K_, M_, H_>& rhs){
-    bool res = operator==(lhs, rhs);
-    return !res;
+    //bool res = operator==(lhs, rhs);
+    return !(lhs == rhs);
     /*if(lhs.empty() != rhs.empty() || lhs.size() != rhs.size()) {
         return true;
     }

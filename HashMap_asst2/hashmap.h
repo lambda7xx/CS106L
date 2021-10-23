@@ -261,7 +261,7 @@ public:
     * if a key is not found. Instead, it will create a K/M pair for that key with a default
     * mapped value.
     */
-    M& at(const K& key);
+    M& at(const K& key)  ;
 
     /*
     * Function that will print to std::cout the contents of the hash table as
