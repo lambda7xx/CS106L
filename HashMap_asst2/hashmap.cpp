@@ -84,6 +84,8 @@ template <typename K, typename M, typename H>
 M& HashMap<K, M, H>::at(const K& key) {
    auto [prev, node_found] = find_node(key);
    if (node_found == nullptr) {
+       value_type val = {key ,{}};
+       //return val.second;
        throw std::out_of_range("HashMap<K, M, H>::at: key not found");
    }
    return node_found->value.second;
@@ -166,7 +168,74 @@ void HashMap<K, M, H>::rehash(size_t new_bucket_count) {
     /* end student code */
 
 }
+//2A 
+template <typename K, typename M, typename H> 
+ M &  HashMap<K, M, H>::operator[](const K &key ){
+   auto [prev, node_found] = find_node(key);
+   if(node_found == nullptr) {
+    //   std::cout<<"default in operaror"<<std::endl;
+       value_type val = {key ,{}};
+       std::pair<HashMap<K, M, H>::value_type*, bool> p = insert(val);
+       return p.first->second;
+   }
+   return node_found->value.second;
+}
 
+template <typename K_, typename M_, typename H_>
+    bool operator==(const HashMap<K_, M_, H_>& lhs,
+       const HashMap<K_, M_, H_>& rhs){
+    if(lhs.empty() != rhs.empty() || lhs.size() != rhs.size()) {
+        return false;
+    }
+    size_t bucket_count = lhs.bucket_count();
+    for(size_t i = 0;  i < bucket_count ; i++) {
+        auto curr = lhs._buckets_array[i];
+        while(curr != nullptr) {
+            const auto& [key, mapped] = curr->value;
+            if(rhs.contains(key) == false) {
+                return false;
+            }
+            auto [prev, node_found] = rhs.find_node(key);
+            if(node_found == nullptr) {
+                return false;
+            }
+            if(node_found->value.second != mapped) {
+                return false;
+            }
+            curr  =curr->next;
+        }
+    }
+    return true;
+}
+
+ template <typename K_, typename M_, typename H_>
+     bool operator!=(const HashMap<K_, M_, H_>& lhs,
+             const HashMap<K_, M_, H_>& rhs){
+    bool res = operator==(lhs, rhs);
+    return !res;
+    /*if(lhs.empty() != rhs.empty() || lhs.size() != rhs.size()) {
+        return true;
+    }
+    size_t bucket_count = lhs.bucket_count();
+    for(size_t i = 0;  i < bucket_count ; i++) {
+        auto curr = lhs._buckets_array[i];
+        while(curr != nullptr) {
+            const auto& [key, mapped] = curr->value;
+            if(rhs.contains(key) == false) {
+                return false;
+            }
+            auto [prev, node_found] = rhs.find_node(key);
+            if(node_found == nullptr) {
+                return true;
+            }
+            if(node_found->value.second != mapped) {
+                return true;
+            }
+            curr  =curr->next;
+        }
+    }
+    return false;*/
+ }
 /*
     Milestone 2-3: begin student code
 

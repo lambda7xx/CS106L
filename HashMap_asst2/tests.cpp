@@ -487,7 +487,10 @@ void C_equality_operator() {
     for (int i = 0; i < 99; ++i) {
         map1.erase(i);
         map2.erase(99-i);
-        VERIFY_TRUE(map1 != map2 && map2 != map1 && map1 == map1 && map2 == map2, __LINE__);
+        VERIFY_TRUE(map1 != map2,__LINE__);
+        VERIFY_TRUE(map2 != map1,__LINE__);
+        VERIFY_TRUE(map1 == map1 && map2 == map2,__LINE__);
+        //VERIFY_TRUE(map1 != map2 && map2 != map1 && map1 == map1 && map2 == map2, __LINE__);
     }
     map1.erase(99);
     map2.erase(0);
