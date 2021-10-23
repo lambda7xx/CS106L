@@ -423,12 +423,14 @@ void B_stream_insertion_operator() {
     std::ostringstream oss2;
     map.insert({"Anna", 2});
     oss2 << map;
+    std::cout<<oss2.str() << std::endl;
     VERIFY_TRUE(oss2.str() == "{Anna:2}", __LINE__);
 
     // Test 3: print map with two elements
     std::ostringstream oss3;
     map.insert({"Avery", 3});
     oss3 << map;
+    std::cout<<oss3.str() << std::endl;
     VERIFY_TRUE(oss3.str() == "{Avery:3, Anna:2}" || oss3.str() == "{Anna:2, Avery:3}", __LINE__);
     auto s = oss3.str();
 

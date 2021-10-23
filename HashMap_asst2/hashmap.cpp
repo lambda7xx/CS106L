@@ -213,29 +213,34 @@ template <typename K_, typename M_, typename H_>
              const HashMap<K_, M_, H_>& rhs){
     //bool res = operator==(lhs, rhs);
     return !(lhs == rhs);
-    /*if(lhs.empty() != rhs.empty() || lhs.size() != rhs.size()) {
-        return true;
-    }
-    size_t bucket_count = lhs.bucket_count();
-    for(size_t i = 0;  i < bucket_count ; i++) {
-        auto curr = lhs._buckets_array[i];
-        while(curr != nullptr) {
-            const auto& [key, mapped] = curr->value;
-            if(rhs.contains(key) == false) {
-                return false;
-            }
-            auto [prev, node_found] = rhs.find_node(key);
-            if(node_found == nullptr) {
-                return true;
-            }
-            if(node_found->value.second != mapped) {
-                return true;
-            }
-            curr  =curr->next;
+}
+template <typename K_, typename M_, typename H_>
+    std::ostream& operator<<(std::ostream& os, const HashMap<K_, M_, H_>& map){
+        if(map.empty()) {
+            os<<"{}";
+            return os;
         }
-    }
-    return false;*/
- }
+        os <<"{";
+        bool first = false;
+        size_t bucket_count = map.bucket_count();
+        for(size_t i = 0;  i < bucket_count ; i++) {
+                auto curr = map._buckets_array[i];
+                 if(curr != nullptr && first ) {
+                     os<<", ";
+                 }
+                while(curr != nullptr) {
+                first = true;
+                const auto& [key, value] = curr->value;
+                os<<key<<":" << value ;
+                curr  =curr->next;
+                if(curr != nullptr) {
+                    os<<", ";
+                }
+                }
+        }
+    os <<"}";
+    return os;
+}
 /*
     Milestone 2-3: begin student code
 

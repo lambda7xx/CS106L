@@ -18,12 +18,12 @@
 // 3C - move constructor + assignment   (tests efficiency, will not pass if you only implemented copy)
 
 // Milestone 1 is optional
-#define RUN_TEST_1A 1
-#define RUN_TEST_1B 1
+#define RUN_TEST_1A 0
+#define RUN_TEST_1B 0
 
 // Milestone 2 and 3 are required
 #define RUN_TEST_2A 1
-#define RUN_TEST_2B 0
+#define RUN_TEST_2B 1
 #define RUN_TEST_2C 1
 #define RUN_TEST_2D 0//todo :lambda:I can not fix this 
 #define RUN_TEST_3A 0

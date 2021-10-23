@@ -1,0 +1,54 @@
+
+----- CS 106L SIMPLE TEST HARNESS -----
+Written by Avery Wang (2019-2020 lecturer)
+
+----- Starter Code Tests (Provided) -----
+Test A_basic                        PASS 
+Test B_insert                       PASS 
+Test C_clear                        PASS 
+Test D_at                           PASS 
+Test E_custom_bucket_count          PASS 
+Test F_custom_hash_function         PASS 
+Test G_erase                        PASS 
+
+----- Milestone 1 Tests (Optional) -----
+Test A_rehash_basic                 SKIP 
+Test B_rehash_correctness_by_time   SKIP 
+
+----- Milestone 2 Tests (Required) -----
+Test A_index_operator               PASS 
+{Anna:2}
+{Anna:2, Avery:3}
+Test B_stream_insertion_operator    PASS 
+Test C_equality_operator            PASS 
+Test D_const_correctness            SKIP 
+
+----- Milestone 3 Tests (Required) -----
+Test A_copy_ctor_assignment         SKIP 
+Test B_move_ctor_assignment         SKIP 
+Test C_move_time                    SKIP 
+
+----- Milestone 4 Tests (Required) -----
+(9 short answers graded manually)
+
+----- Milestone 5 Tests (Optional) -----
+Test A_initializer_list_ctor        SKIP 
+Test B_range_ctor                   SKIP 
+
+----- Milestone 6 Tests (Optional) -----
+Test A_iterator_for_each_basic      SKIP 
+Test B_iterator_for_each_edge       SKIP 
+Test C_iterator_operators           SKIP 
+Test D_iterator_algorithm           SKIP 
+Test E_const_iterator               SKIP 
+Test F_iterator_const_correctness   SKIP 
+
+----- Test Harness Summary -----
+Required tests: 10/14 (excluding short answers)
+Optional tests: 0/10
+
+Halfway there! 
+Some tests were failed or skipped. 
+If stuck, try adding a map.debug() call before a VERIFY_TRUE.
+
+----- End of Test Harness -----
