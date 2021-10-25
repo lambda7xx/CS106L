@@ -313,3 +313,25 @@ HashMap<K, M,H> & HashMap<K,M,H>::operator=(HashMap<K, M,H> && rhs){
         - move constructor
         - move assignment
 */
+
+// A_initializer_list_ctor
+template <typename K, typename M, typename H> 
+HashMap<K, M, H>::HashMap(std::initializer_list<value_type> values,size_t bucket_count , const H& hash)
+:   _size(0),
+   _hash_function(hash),
+   _buckets_array(bucket_count, nullptr)  {
+    for(auto value : values) {
+        insert(value);
+    }
+}
+
+//a range actor
+template <typename K, typename M, typename H> 
+template<typename Input> 
+HashMap<K,M,H>::HashMap(Input fr, Input la):HashMap() {
+ auto temp = fr;
+ while(temp != la) {
+     insert(*temp);
+     temp++;
+ }
+}

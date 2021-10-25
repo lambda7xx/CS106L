@@ -36,8 +36,8 @@
 // 5B - range constructor for HashMap
 // 6A-D - complete HashMapIterator class, as well as correct changes in HashMap class
 // 6E-F - const correct HashMapIterator class
-#define RUN_TEST_5A 0
-#define RUN_TEST_5B 0
+#define RUN_TEST_5A 1
+#define RUN_TEST_5B 1
 #define RUN_TEST_6A 0
 #define RUN_TEST_6B 0
 #define RUN_TEST_6C 0

@@ -27,16 +27,16 @@ Test D_const_correctness            SKIP
 Test A_copy_ctor_assignment         PASS 
 Test B_move_ctor_assignment         PASS 
 HashMap with 2000 elements (ns)
-Copy ctor: 3173353    Move ctor: 51
-Copy assign: 8470242  Move assign: 318
+Copy ctor: 4540537    Move ctor: 80
+Copy assign: 13859081  Move assign: 818
 Test C_move_time                    PASS 
 
 ----- Milestone 4 Tests (Required) -----
 (9 short answers graded manually)
 
 ----- Milestone 5 Tests (Optional) -----
-Test A_initializer_list_ctor        SKIP 
-Test B_range_ctor                   SKIP 
+Test A_initializer_list_ctor        PASS 
+Test B_range_ctor                   PASS 
 
 ----- Milestone 6 Tests (Optional) -----
 Test A_iterator_for_each_basic      SKIP 
@@ -48,10 +48,11 @@ Test F_iterator_const_correctness   SKIP
 
 ----- Test Harness Summary -----
 Required tests: 13/14 (excluding short answers)
-Optional tests: 0/10
+Optional tests: 2/10
 
 Super close! 
 Some tests were failed or skipped. 
 If stuck, try adding a map.debug() call before a VERIFY_TRUE.
+Great job completing the extensions! 
 
 ----- End of Test Harness -----

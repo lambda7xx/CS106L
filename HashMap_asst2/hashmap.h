@@ -11,6 +11,7 @@
 #ifndef HASHMAP_H
 #define HASHMAP_H
 
+#include <initializer_list>
 #include <iostream>             // for cout
 #include <iomanip>              // for setw, setprecision, setfill, right
 #include <sstream>              // for istringstream
@@ -94,7 +95,10 @@ public:
     */
     explicit HashMap(size_t bucket_count, const H& hash = H());
 
+    
+    HashMap(std::initializer_list<value_type> values, size_t bucket_count = kDefaultBuckets, const H& hash = H());
 
+    template<typename InPutLi> HashMap(InPutLi fr ,InPutLi ls);
     /*
     * Destructor.
     *
@@ -335,6 +339,8 @@ public:
       * Complexity: O(N), where N = rhs.size();
       */
     HashMap& operator=(HashMap&& rhs);
+
+
 private:
 
     /*
