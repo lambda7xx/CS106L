@@ -24,9 +24,12 @@ Test C_equality_operator            PASS
 Test D_const_correctness            SKIP 
 
 ----- Milestone 3 Tests (Required) -----
-Test A_copy_ctor_assignment         SKIP 
-Test B_move_ctor_assignment         SKIP 
-Test C_move_time                    SKIP 
+Test A_copy_ctor_assignment         PASS 
+Test B_move_ctor_assignment         PASS 
+HashMap with 2000 elements (ns)
+Copy ctor: 3173353    Move ctor: 51
+Copy assign: 8470242  Move assign: 318
+Test C_move_time                    PASS 
 
 ----- Milestone 4 Tests (Required) -----
 (9 short answers graded manually)
@@ -44,10 +47,10 @@ Test E_const_iterator               SKIP
 Test F_iterator_const_correctness   SKIP 
 
 ----- Test Harness Summary -----
-Required tests: 10/14 (excluding short answers)
+Required tests: 13/14 (excluding short answers)
 Optional tests: 0/10
 
-Halfway there! 
+Super close! 
 Some tests were failed or skipped. 
 If stuck, try adding a map.debug() call before a VERIFY_TRUE.
 

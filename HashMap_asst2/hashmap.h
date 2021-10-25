@@ -94,6 +94,7 @@ public:
     */
     explicit HashMap(size_t bucket_count, const H& hash = H());
 
+
     /*
     * Destructor.
     *
@@ -312,7 +313,28 @@ public:
     void rehash(size_t new_buckets);
 
     M& operator[](const K& key);
+    
+    //copy assignment 
+    HashMap<K, M,H> & operator=(const HashMap<K, M, H>& map);  
 
+        //copy constructor
+    HashMap(const HashMap & map);
+    // move constructor
+    HashMap(HashMap && rhs);
+
+    /*
+      * Move assignment operator
+      * Move the elements in the rhs r-value HashMap into the lhs HashMap
+      * Requirements: the rhs HashMap should have the same <K, M, H>.
+      *
+      * Usage:
+      * 		HashMap<char, int> rhs{{'a', 3}, {'b', 4}, {'c', 6}};
+      * 		HashMap<char, int> map;
+      * 		map = std::move(rhs); // now rhs should be empty
+      *
+      * Complexity: O(N), where N = rhs.size();
+      */
+    HashMap& operator=(HashMap&& rhs);
 private:
 
     /*
@@ -422,6 +444,7 @@ private:
     friend bool operator!=(const HashMap<K_, M_, H_>& lhs,
        const HashMap<K_, M_, H_>& rhs);
 
+ 
 
 };
 

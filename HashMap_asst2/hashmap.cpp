@@ -241,6 +241,62 @@ template <typename K_, typename M_, typename H_>
     os <<"}";
     return os;
 }
+//copy assignment
+//考虑到一种情况，参数map和自己是同一个东西咋办
+//如果这时候clear了，参数也没有了
+template <typename K, typename M, typename H>
+HashMap<K, M,H> & HashMap<K,M,H>::operator=(const HashMap<K, M, H> &map) {
+   if(this == &map) {
+       return *this;
+   }
+   clear();
+   _hash_function = map._hash_function;
+   _buckets_array.resize(map.bucket_count());
+   size_t bucket_count = map.bucket_count();
+   auto bucket_array = map._buckets_array;
+   for(auto & curr : bucket_array) {
+       while(curr != nullptr) {
+           insert(curr->value);
+           curr = curr->next;
+       }
+   }
+   return *this;
+}
+//copy constructor
+template <typename K, typename M, typename H> 
+HashMap<K, M,H>::HashMap(const HashMap<K, M,H> & map) {
+    //clear();
+    if(this == &map) {
+   }
+    clear();
+    _hash_function = map._hash_function;
+   _buckets_array.resize(map.bucket_count());
+   size_t bucket_count = map.bucket_count();
+   auto bucket_array = map._buckets_array;
+   for(auto & curr : bucket_array) {
+       while(curr != nullptr) {
+           insert(curr->value);
+           curr = curr->next;
+       }
+   }
+}
+
+// move constructor
+template <typename K, typename M, typename H>
+HashMap<K, M, H>::HashMap(HashMap&& rhs)
+:_size(std::move(rhs._size)),
+ _hash_function(std::move(rhs._hash_function)),
+ _buckets_array(std::move(rhs._buckets_array))
+{
+}
+
+template <typename K, typename M, typename H> 
+HashMap<K, M,H> & HashMap<K,M,H>::operator=(HashMap<K, M,H> && rhs){
+ _size =std::move(rhs._size);
+ _hash_function= std::move(rhs._hash_function);
+ _buckets_array = std::move(rhs._buckets_array);
+ return *this;
+}
 /*
     Milestone 2-3: begin student code
 
