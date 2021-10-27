@@ -340,7 +340,84 @@ public:
       */
     HashMap& operator=(HashMap&& rhs);
 
+    friend class HashMapIterator<HashMap, false>;
+    friend class HashMapIterator<HashMap,true>;
 
+    using iterator = HashMapIterator<HashMap,false>;
+    using const_iterator = HashMapIterator<HashMap ,true>;
+     /*
+    * Inserts the K/M pair into the HashMap, if the key does not already exist.
+    * If the key exists, then the operation is a no-op.
+    *
+    * Parameters: const l-value reference to value_type (K/M pair)
+    * Return value:
+    *          pair<iterator, bool>, where:
+    *              iterator - iterator to the value_type element with the given key
+    *                         this element may have been just added, or may have already existed.
+    *              bool - true if the element was successfully added,
+    *                      false if the element already existed.
+    *
+    * Usage:
+    *      HashMap<int, std::string> map;
+    *      auto [iter1, insert1] = map.insert({3, "Avery"}); // inserts {3, "Avery"}, iter1 points to that element, insert1 = true
+    *      auto [iter2, insert2] = map.insert({3, "Anna"});  // no-op, iter2 points to {3, "Avery"}, insert2 = false
+    *
+    * Complexity: O(1) amortized average case
+    */
+    std::pair<iterator, bool> insert(const value_type& value , bool flag) noexcept;
+    /*
+     * Returns an iterator to the first element.
+     * This overload is used when the HashMap is non-const.
+     *
+     * Usage:
+     *      auto iter = map.begin();
+     */
+    iterator begin() noexcept;//这里的noexcept有什么意思
+
+    /*
+     * Returns an iterator to one past the last element.
+     * This overload is used when the HashMap is non-const.
+     *
+     * Usage:
+     *      while (iter != map.end()) {...}
+     */
+    iterator end() noexcept;
+
+    /*
+     * Returns a const_iterator to the first element.
+     * This overload is used when the HashMap is const.
+     *
+     * Usage:
+     *      auto iter = cmap.begin();
+     */
+    const_iterator begin() const noexcept;
+
+    /*
+     * Returns an iterator to one past the last element.
+     * This overload is used when the HashMap is const.
+     *
+     * Usage:
+     *      while (iter != cmap.end()) {...}
+     */
+    const_iterator end() const noexcept;
+
+        /*
+    * Erases the K/M pair that pos points to.
+    * Behavior is undefined if pos is not a valid and dereferencable iterator.
+    *
+    * Parameters: const_iterator pos, iterator to element to be removed
+    * Return value: the iterator immediately following pos, which may be end().
+    *
+    * Usage:
+    *       auto iter = map.find(3);
+    *       auto next = map.erase(iter);    // erases element that iter is pointing to
+    *
+    * Complexity: O(1) amortized average case, O(N) worst case, N = number of elements
+    *
+    * Notes: a call to erase should maintain the order of existing iterators,
+    * other than iterators to the erased K/M element.
+    */
+    iterator erase(const_iterator pos);
 private:
 
     /*
@@ -433,7 +510,7 @@ private:
     *      const auto& [key, mapped] = ptr->value;     // each node* contains a value that is a pair
     */
     std::vector<node*> _buckets_array;
-
+    using _buckets_array_type = std::vector<node*>;
     /*
     * A constant for the default number of buckets for the default constructor.
     */
@@ -450,7 +527,21 @@ private:
     friend bool operator!=(const HashMap<K_, M_, H_>& lhs,
        const HashMap<K_, M_, H_>& rhs);
 
- 
+    
+    
+    /*
+    * Finds the first bucket in _buckets_array that is non-empty.
+    *
+    * Hint: on the assignment, you should NOT need to call this function.
+    */
+    size_t first_not_empty_bucket() const noexcept;
+
+    /*
+    * Creates an iterator that points to the element curr->value.
+    *
+    * Hint: on the assignment, you should NOT need to call this function.
+    */
+    iterator make_iterator(node* curr);
 
 };
 
