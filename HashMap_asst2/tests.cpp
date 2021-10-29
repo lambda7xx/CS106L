@@ -871,10 +871,9 @@ void D_iterator_algorithm() {
 
     const auto& c_map = map;
     c_map.debug();
-    
-    /*std::copy(c_map.begin(), c_map.end(), std::inserter(answer, answer.begin()));
+    std::copy(c_map.begin(), c_map.end(), std::inserter(answer, answer.begin()));
     std::cout<<answer.size() << " 2and " << c_map.size() << std::endl;;
-    VERIFY_TRUE(check_map_equal(map, answer), __LINE__);*/
+    VERIFY_TRUE(check_map_equal(map, answer), __LINE__);
     /*std::map<int, int> answer1;
     std::copy(c_map.begin(), c_map.end(), std::inserter(answer1, answer1.begin()));
     std::cout<<answer1.size() << " 2and " << c_map.size() << std::endl;;

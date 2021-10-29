@@ -27,8 +27,8 @@ Test D_const_correctness            SKIP
 Test A_copy_ctor_assignment         PASS 
 Test B_move_ctor_assignment         PASS 
 HashMap with 2000 elements (ns)
-Copy ctor: 3668569    Move ctor: 48
-Copy assign: 10659421  Move assign: 664
+Copy ctor: 3636676    Move ctor: 64
+Copy assign: 11736735  Move assign: 626
 Test C_move_time                    PASS 
 
 ----- Milestone 4 Tests (Required) -----
@@ -102,10 +102,11 @@ Size: 27      Buckets: 10      (load factor: 2.7)
 first_index:0
 first_index:0
 0 2and 27
-Test D_iterator_algorithm---------- FAIL: VERIFY_TRUE assertion failure at line number 881 in file tests.cpp
+Test D_iterator_algorithm---------- FAIL: VERIFY_TRUE assertion failure at line number 876 in file tests.cpp
 first_index:1
 first_index:1
-Test E_const_iterator-------------- FAIL: VERIFY_TRUE assertion failure at line number 898 in file tests.cpp
+first_index:1
+Test E_const_iterator-------------- PASS 
 first_index:1
 first_index:1
 first_index:1
@@ -117,7 +118,7 @@ Test F_iterator_const_correctness-- PASS
 
 ----- Test Harness Summary -----
 Required tests: 13/14 (excluding short answers)
-Optional tests: 6/10
+Optional tests: 7/10
 
 Super close! 
 Some tests were failed or skipped. 

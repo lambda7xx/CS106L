@@ -119,6 +119,8 @@ public:
 
     HashMapIterator(HashMapIterator<Map, IsConst>&& rhs) = default;
     HashMapIterator<Map, IsConst>& operator=(HashMapIterator<Map, IsConst>&& rhs) = default;
+       // return node_ == rhs.node_ && bucket_array_ == rhs.bucket_array_ && bucket_index_ == rhs.bucket_index_;
+
     using node = typename Map::node;
     using bucket_array_type = typename Map::_buckets_array_type;
     HashMapIterator(node * node ,bucket_array_type * bucket_array, size_t  bucket_index);
