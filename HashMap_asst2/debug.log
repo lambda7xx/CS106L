@@ -27,8 +27,8 @@ Test D_const_correctness            SKIP
 Test A_copy_ctor_assignment         PASS 
 Test B_move_ctor_assignment         PASS 
 HashMap with 2000 elements (ns)
-Copy ctor: 4364359    Move ctor: 80
-Copy assign: 13841861  Move assign: 688
+Copy ctor: 3520374    Move ctor: 77
+Copy assign: 12675018  Move assign: 587
 Test C_move_time                    PASS 
 
 ----- Milestone 4 Tests (Required) -----
@@ -44,26 +44,63 @@ Test B_range_ctor                   PASS
 21 and 21
 30 and 30
 140 and 140
-********
+--------
+-----------------------------
+Printing debug information for your HashMap implementation
+Size: 5      Buckets: 10      (load factor: 0.5) 
+
+[  0]: -> 140:140 -> 30:30 /
+[  1]: -> 21:21 -> 1:1 /
+[  2]: -> 2:2 /
+[  3]: /
+[  4]: /
+[  5]: /
+[  6]: /
+[  7]: /
+[  8]: /
+[  9]: /
+-----------------------------
+first_index:0
 140 and 140
-endnd
+30 and 30
 21 and 21
-endnd
+1 and 1
 2 and 2
 ********
+1 and 1
 2 and 2
 21 and 21
+30 and 30
 140 and 140
-Test A_iterator_for_each_basic      FAIL: VERIFY_TRUE assertion failure at line number 762 in file tests.cpp
-Test B_iterator_for_each_edge       SKIP 
-Test C_iterator_operators           SKIP 
-Test D_iterator_algorithm           SKIP 
-Test E_const_iterator               SKIP 
-Test F_iterator_const_correctness   SKIP 
+Test A_iterator_for_each_basic----- PASS 
+first_index:0
+first_index:0
+first_index:0
+first_index:10
+Test B_iterator_for_each_edge------ PASS 
+first_index:1
+first_index:1
+first_index:1
+Test C_iterator_operators---------- PASS 
+first_index:0
+first_index:0
+first_index:0
+Test D_iterator_algorithm---------- FAIL: VERIFY_TRUE assertion failure at line number 873 in file tests.cpp
+first_index:1
+first_index:1
+Test E_const_iterator-------------- FAIL: VERIFY_TRUE assertion failure at line number 890 in file tests.cpp
+first_index:1
+first_index:1
+first_index:1
+first_index:1
+first_index:1
+first_index:1
+first_index:1
+Test F_iterator_const_correctness-- PASS 
 
 ----- Test Harness Summary -----
 Required tests: 13/14 (excluding short answers)
-Optional tests: 2/10
+Optional tests: 6/10
 
 Super close! 
 Some tests were failed or skipped. 

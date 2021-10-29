@@ -748,8 +748,9 @@ void A_iterator_for_each_basic() {
         std::cout<<pair.first << " and " << pair.second << std::endl;
         map10.insert(pair);
     }
-    std::cout<<"********"<<std::endl;
+    std::cout<<"--------"<<std::endl;
     std::set<std::pair<int, int> > answers10;
+    map10.debug();
     //752行是什么操作符
     for (const auto& pair : map10) {
         std::cout<<pair.first << " and " << pair.second << std::endl;

@@ -39,8 +39,8 @@
 #define RUN_TEST_5A 1
 #define RUN_TEST_5B 1
 #define RUN_TEST_6A 1
-#define RUN_TEST_6B 0
-#define RUN_TEST_6C 0
-#define RUN_TEST_6D 0
-#define RUN_TEST_6E 0
-#define RUN_TEST_6F 0
+#define RUN_TEST_6B 1
+#define RUN_TEST_6C 1
+#define RUN_TEST_6D 1
+#define RUN_TEST_6E 1
+#define RUN_TEST_6F 1

@@ -399,7 +399,7 @@ public:
      * Usage:
      *      while (iter != cmap.end()) {...}
      */
-    const_iterator end() const noexcept;
+    const_iterator end() const noexcept ;
 
         /*
     * Erases the K/M pair that pos points to.

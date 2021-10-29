@@ -119,11 +119,12 @@ public:
 
     HashMapIterator(HashMapIterator<Map, IsConst>&& rhs) = default;
     HashMapIterator<Map, IsConst>& operator=(HashMapIterator<Map, IsConst>&& rhs) = default;
-
-
-private:
     using node = typename Map::node;
     using bucket_array_type = typename Map::_buckets_array_type;
+    HashMapIterator(node * node ,bucket_array_type * bucket_array, size_t  bucket_index);
+
+private:
+
     /*
      * Determines what is the type of the _buckets_array that the HashMap is using.
      */
@@ -131,14 +132,13 @@ private:
 
     size_t bucket_index_ ;//这个node属于哪个bucket的索引
     node * node_;
-    bucket_array_type bucket_array_;
-    HashMapIterator(node * node ,bucket_array_type bucket_array, size_t  bucket_index);
+    bucket_array_type * bucket_array_;
 };
 
 
 //构造函数
 template <typename Map, bool IsConst >
-HashMapIterator<Map,IsConst>::HashMapIterator(node * node ,bucket_array_type bucket_array, size_t  bucket_index)
+HashMapIterator<Map,IsConst>::HashMapIterator(node * node ,bucket_array_type * bucket_array, size_t  bucket_index)
 :node_(node),
  bucket_array_(bucket_array),
  bucket_index_(bucket_index)
@@ -157,18 +157,31 @@ typename HashMapIterator<Map, IsConst>::pointer HashMapIterator<Map, IsConst>::o
 //todo 
 template <typename Map, bool IsConst>
 HashMapIterator<Map, IsConst>&  HashMapIterator<Map, IsConst>::operator++() {
-    if(!node_->next){
+    /*if(node_){
         node_ = node_->next;
     } else {
         //找到下一个node
         size_t index = bucket_index_+1;
-        std::cout<<"endnd"<<std::endl;
-        for(index; index < bucket_array_.size(); index++){
-            auto curr  = bucket_array_[index];
+        //std::cout<<"endnd"<<std::endl;
+        for(index; index < (*bucket_array_).size(); index++){
+            auto curr  = (*bucket_array_)[index];
             if(curr != nullptr){
                 node_ = curr;
                 bucket_index_ = index;
                 break;
+            }
+        }
+        if(index ==(*bucket_array_).size() ){
+            node_ = nullptr;
+            bucket_index_  =(*bucket_array_).size();
+        }
+    }*/
+    node_ = node_->next; // _node can't be nullptr - that would be incrementing end()
+    if (node_ == nullptr) { // if you reach the end of the bucket, find the next bucket
+        for (++bucket_index_; bucket_index_ < (*bucket_array_).size(); ++bucket_index_) {
+            node_ = (*bucket_array_)[bucket_index_];
+            if (node_ != nullptr) {
+                return *this;
             }
         }
     }
