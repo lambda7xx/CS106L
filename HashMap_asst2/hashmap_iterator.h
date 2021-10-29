@@ -60,7 +60,8 @@ public:
      * because that gives the client write access the map itself is const.
      */
     operator HashMapIterator<Map, true>() const {
-        return HashMapIterator<Map, true>(_buckets_array, _node, _bucket);
+        return HashMapIterator<Map, true>(node_,bucket_array_, bucket_index_);
+        // HashMapIterator(node * node ,bucket_array_type bucket_array, size_t  bucket_index);
     }
 
     /*
@@ -156,30 +157,30 @@ typename HashMapIterator<Map, IsConst>::pointer HashMapIterator<Map, IsConst>::o
 //todo 
 template <typename Map, bool IsConst>
 HashMapIterator<Map, IsConst>&  HashMapIterator<Map, IsConst>::operator++() {
-auto copy = *this;
-if(node_->next == nullptr) {
-    //这个bucket_index has no element
-    for(size_t  i = (bucket_index_+1); i < bucket_array_.size(); i++) {
-         auto curr = bucket_array_[i];
-         if(curr != nullptr) {
-             node_ = curr;
-             bucket_array_ = i;//重新设置node所在的索引
-             return copy;
-         }
+    if(!node_->next){
+        node_ = node_->next;
+    } else {
+        //找到下一个node
+        size_t index = bucket_index_+1;
+        std::cout<<"endnd"<<std::endl;
+        for(index; index < bucket_array_.size(); index++){
+            auto curr  = bucket_array_[index];
+            if(curr != nullptr){
+                node_ = curr;
+                bucket_index_ = index;
+                break;
+            }
+        }
     }
-    return nullptr;
-} else {
-    node_ = node_->next;
-    return copy;
-}
-
-//return *this;
+    return *this;
 }
 
 //todo 
 template <typename Map, bool IsConst>
-HashMapIterator<Map, IsConst>  HashMapIterator<Map, IsConst>::operator++(int stride) {
-    
+HashMapIterator<Map, IsConst>  HashMapIterator<Map, IsConst>::operator++(int) {
+    auto copy = *this;
+    ++(*this);
+    return copy;
 }
 
 template <typename Map_, bool IsConst_>

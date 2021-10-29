@@ -745,12 +745,20 @@ void A_iterator_for_each_basic() {
 
     HashMap<int, int> map10;            // can your iterator traverse normal use case?
     for (const auto& pair : questions) {
+        std::cout<<pair.first << " and " << pair.second << std::endl;
         map10.insert(pair);
     }
+    std::cout<<"********"<<std::endl;
     std::set<std::pair<int, int> > answers10;
     //752行是什么操作符
-    for (const auto& pair : map10) VERIFY_TRUE(answers10.insert(pair).second == true, __LINE__);
-
+    for (const auto& pair : map10) {
+        std::cout<<pair.first << " and " << pair.second << std::endl;
+        VERIFY_TRUE(answers10.insert(pair).second == true, __LINE__);
+    }
+    std::cout<<"********" << std::endl;
+    for(const auto & pair : answers10) {
+        std::cout<<pair.first << " and " << pair.second << std::endl;
+    }
     VERIFY_TRUE(questions == answers10, __LINE__);
 }
 #endif

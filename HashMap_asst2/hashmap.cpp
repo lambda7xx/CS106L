@@ -13,6 +13,7 @@
 */
 
 #include "hashmap.h"
+#include <hashmap_iterator.h>
 
 
 template <typename K, typename M, typename H>
@@ -222,8 +223,8 @@ template <typename K_, typename M_, typename H_>
         }
         os <<"{";
         bool first = false;
-        size_t bucket_count = map.bucket_count();
-        for(size_t i = 0;  i < bucket_count ; i++) {
+        size_t bucket_counts = map.bucket_count();
+        for(size_t i = 0;  i < bucket_counts ; i++) {
                 auto curr = map._buckets_array[i];
                  if(curr != nullptr && first ) {
                      os<<", ";
@@ -335,3 +336,46 @@ HashMap<K,M,H>::HashMap(Input fr, Input la):HashMap() {
      temp++;
  }
 }
+
+template <typename K, typename M, typename H> 
+typename HashMap<K, M, H>::iterator HashMap<K, M,H>::begin() noexcept {
+    //find the node first is not empty 
+    const size_t first_index = first_not_empty_bucket();
+    node * node = _buckets_array[first_index];
+    return HashMapIterator<HashMap,false>(node,_buckets_array,first_index);
+}
+
+template <typename K, typename M, typename H> 
+typename HashMap<K, M, H>::iterator HashMap<K, M,H>::end() noexcept {
+    return HashMapIterator<HashMap,false>(nullptr,_buckets_array,bucket_count());
+}
+
+
+//找到第一个桶
+template <typename K, typename M, typename H>  
+size_t HashMap<K,M,H>::first_not_empty_bucket() const noexcept {
+    size_t  first_index = -1;
+    const size_t bucket_counts = bucket_count();
+    for(size_t i = 0;  i < bucket_counts ; i++) {
+        auto curr = _buckets_array[i];
+        if(curr != nullptr) {
+            first_index = i;
+            return first_index;
+        }
+    }   
+  return first_index;
+}
+
+template <typename K, typename M, typename H> 
+typename HashMap<K, M, H>::const_iterator HashMap<K, M,H>::begin() const  noexcept {
+    //find the node first is not empty 
+    const size_t first_index = first_not_empty_bucket();
+    node * node = _buckets_array[first_index];
+    return HashMapIterator<HashMap,true>(node,_buckets_array,first_index);
+}
+
+template <typename K, typename M, typename H> 
+typename HashMap<K, M, H>::const_iterator HashMap<K, M,H>::end() const noexcept {
+    return HashMapIterator<HashMap,true>(nullptr,_buckets_array,bucket_count());
+}
+

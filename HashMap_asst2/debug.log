@@ -27,8 +27,8 @@ Test D_const_correctness            SKIP
 Test A_copy_ctor_assignment         PASS 
 Test B_move_ctor_assignment         PASS 
 HashMap with 2000 elements (ns)
-Copy ctor: 4540537    Move ctor: 80
-Copy assign: 13859081  Move assign: 818
+Copy ctor: 4364359    Move ctor: 80
+Copy assign: 13841861  Move assign: 688
 Test C_move_time                    PASS 
 
 ----- Milestone 4 Tests (Required) -----
@@ -39,7 +39,22 @@ Test A_initializer_list_ctor        PASS
 Test B_range_ctor                   PASS 
 
 ----- Milestone 6 Tests (Optional) -----
-Test A_iterator_for_each_basic      SKIP 
+1 and 1
+2 and 2
+21 and 21
+30 and 30
+140 and 140
+********
+140 and 140
+endnd
+21 and 21
+endnd
+2 and 2
+********
+2 and 2
+21 and 21
+140 and 140
+Test A_iterator_for_each_basic      FAIL: VERIFY_TRUE assertion failure at line number 762 in file tests.cpp
 Test B_iterator_for_each_edge       SKIP 
 Test C_iterator_operators           SKIP 
 Test D_iterator_algorithm           SKIP 
