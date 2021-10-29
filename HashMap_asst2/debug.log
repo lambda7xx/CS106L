@@ -27,8 +27,8 @@ Test D_const_correctness            SKIP
 Test A_copy_ctor_assignment         PASS 
 Test B_move_ctor_assignment         PASS 
 HashMap with 2000 elements (ns)
-Copy ctor: 3520374    Move ctor: 77
-Copy assign: 12675018  Move assign: 587
+Copy ctor: 3668569    Move ctor: 48
+Copy assign: 10659421  Move assign: 664
 Test C_move_time                    PASS 
 
 ----- Milestone 4 Tests (Required) -----
@@ -83,12 +83,29 @@ first_index:1
 first_index:1
 Test C_iterator_operators---------- PASS 
 first_index:0
+27 1and 27
+-----------------------------
+Printing debug information for your HashMap implementation
+Size: 27      Buckets: 10      (load factor: 2.7) 
+
+[  0]: -> 0:0 -> -6:36 -> -16:256 /
+[  1]: -> 1:1 -> -5:25 -> -15:225 /
+[  2]: -> 2:4 -> -4:16 -> -14:196 /
+[  3]: -> 3:9 -> -3:9 -> -13:169 /
+[  4]: -> 4:16 -> -2:4 -> -12:144 /
+[  5]: -> 5:25 -> -1:1 -> -11:121 /
+[  6]: -> 6:36 -> -10:100 /
+[  7]: -> 7:49 -> -9:81 /
+[  8]: -> 8:64 -> -8:64 /
+[  9]: -> 9:81 -> -7:49 -> -17:289 /
+-----------------------------
 first_index:0
 first_index:0
-Test D_iterator_algorithm---------- FAIL: VERIFY_TRUE assertion failure at line number 873 in file tests.cpp
+0 2and 27
+Test D_iterator_algorithm---------- FAIL: VERIFY_TRUE assertion failure at line number 881 in file tests.cpp
 first_index:1
 first_index:1
-Test E_const_iterator-------------- FAIL: VERIFY_TRUE assertion failure at line number 890 in file tests.cpp
+Test E_const_iterator-------------- FAIL: VERIFY_TRUE assertion failure at line number 898 in file tests.cpp
 first_index:1
 first_index:1
 first_index:1

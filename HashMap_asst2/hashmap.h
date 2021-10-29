@@ -372,7 +372,7 @@ public:
      * Usage:
      *      auto iter = map.begin();
      */
-    iterator begin() noexcept;//这里的noexcept有什么意思
+    iterator begin() ;//这里的noexcept有什么意思
 
     /*
      * Returns an iterator to one past the last element.
@@ -381,7 +381,7 @@ public:
      * Usage:
      *      while (iter != map.end()) {...}
      */
-    iterator end() noexcept;
+    iterator end() ;
 
     /*
      * Returns a const_iterator to the first element.
@@ -390,7 +390,7 @@ public:
      * Usage:
      *      auto iter = cmap.begin();
      */
-    const_iterator begin() const noexcept;
+    const_iterator begin() const ;
 
     /*
      * Returns an iterator to one past the last element.
@@ -399,7 +399,7 @@ public:
      * Usage:
      *      while (iter != cmap.end()) {...}
      */
-    const_iterator end() const noexcept ;
+    const_iterator end() const  ;
 
         /*
     * Erases the K/M pair that pos points to.

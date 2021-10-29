@@ -338,7 +338,7 @@ HashMap<K,M,H>::HashMap(Input fr, Input la):HashMap() {
 }
 
 template <typename K, typename M, typename H> 
-typename HashMap<K, M, H>::iterator HashMap<K, M,H>::begin() noexcept {
+typename HashMap<K, M, H>::iterator HashMap<K, M,H>::begin()  {
     //find the node first is not empty 
     const size_t first_index = first_not_empty_bucket();
     std::cout<<"first_index:"<<first_index << std::endl;
@@ -350,7 +350,7 @@ typename HashMap<K, M, H>::iterator HashMap<K, M,H>::begin() noexcept {
 }
 
 template <typename K, typename M, typename H> 
-typename HashMap<K, M, H>::iterator HashMap<K, M,H>::end() noexcept {
+typename HashMap<K, M, H>::iterator HashMap<K, M,H>::end() {
     return HashMapIterator<HashMap,false>(nullptr,&_buckets_array,bucket_count());
 }
 
@@ -371,7 +371,7 @@ size_t HashMap<K,M,H>::first_not_empty_bucket() const noexcept {
 }
 
 template <typename K, typename M, typename H> 
-typename HashMap<K, M, H>::const_iterator HashMap<K, M,H>::begin() const  noexcept {
+typename HashMap<K, M, H>::const_iterator HashMap<K, M,H>::begin() const   {
     //find the node first is not empty 
     const size_t first_index = first_not_empty_bucket();
     node * node = _buckets_array[first_index];
@@ -380,7 +380,7 @@ typename HashMap<K, M, H>::const_iterator HashMap<K, M,H>::begin() const  noexce
 }
 
 template <typename K, typename M, typename H> 
-typename HashMap<K, M, H>::const_iterator HashMap<K, M,H>::end() const noexcept {
+typename HashMap<K, M, H>::const_iterator HashMap<K, M,H>::end() const  {
     // const size_t count= bucket_count();
     // const node * node = nullptr;
     // const _buckets_array_type * bucket_array = &_buckets_array;
